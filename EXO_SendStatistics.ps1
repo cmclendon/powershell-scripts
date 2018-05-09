@@ -1,4 +1,4 @@
-﻿# #############################################################################
+﻿<##############################################################################
 # Bit.Expert - SCRIPT - POWERSHELL
 # NAME: EXO_SendStatistics.ps1
 # 
@@ -13,8 +13,9 @@
 # message to multiple users (e.g. multiple users on the to: line)
 #
 # VERSION HISTORY
-# 1.0 2018.05.08 Initial Version.
-# #############################################################################
+# 1.0 2018.05.08 Initial Version
+# 1.0 2018.05.09 Added additional recipient detail and some refactoring
+##############################################################################>
 
 function getExchangeRecipients ([hashtable] $MailRecipients)
 {
