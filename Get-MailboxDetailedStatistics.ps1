@@ -1,21 +1,12 @@
 ﻿<##############################################################################
-# Bit.Expert - SCRIPT - POWERSHELL
-# NAME: EXO_SendStatistics.ps1
+# BIT.expert http://bit.expert
+# NAME: Get-MailboxDetailedStatistics.ps1
 # 
 # AUTHOR:  Christopher McLendon
 # DATE:  May 8, 2018
-# EMAIL: christopher@themclendons.com
 # 
-# COMMENT:  This script will connect to your Exhange Online tenant and,
-# given a date range, calculate the total number of e-mails along with payload
-# size for each Exchange user.  It uses the Message ID for each message to
-# avoid counting duplicate messages where a user may have sent the same 
-# message to multiple users (e.g. multiple users on the to: line)
-#
 # VERSION HISTORY
-# 1.0 2018.05.08 Initial Version
-# 1.1 2018.05.09 Refactoring and logic to recycle remote session
-# 1.2 2018.05.10 Comments, fixes and additional counters
+# 1.0 2018.05.10 Initial Version
 ##############################################################################>
 
 <#
