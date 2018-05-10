@@ -1,0 +1,12 @@
+#TYPE System.Management.Automation.PSCustomObject
+"MailAddress","Sent","SentSize","SentInternal","SentInternalSize","SentExternal","SentExternalSize","Received","ReceivedSize","ReceivedInternal","ReceivedInternalSize","ReceivedExternal","ReceivedExternalSize","SentUnique","SentUniqueSize","SentUniqueInternal","SentUniqueInternalSize","SentUniqueExternal","SentUniqueExternalSize"
+"mbox100@themclendons.com","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"
+"tiffany@themclendons.com","3","48376","3","48376","0","0","21","1942997","4","0","17","0","3","48376","3","48376","0","0"
+"haialerts@themclendons.com","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"
+"hayden@themclendons.com","0","0","0","0","0","0","26","1247009","4","0","22","0","0","0","0","0","0","0"
+"discoverysearchmailbox{d919ba05-46a6-415f-80ad-7e09334bb852}@mclendon.onmicrosoft.com","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"
+"superbowl@themclendons.com","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"
+"christopher@themclendons.com","15","824560","13","349874","2","474686","88","5748839","6","0","82","0","7","667333","5","192647","2","474686"
+"housephone@themclendons.com","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"
+"heidi@themclendons.com","20","502368","4","67225","16","435143","129","8673899","6","0","123","0","7","123626","4","67225","3","56401"
+"mbox200@themclendons.com","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"
