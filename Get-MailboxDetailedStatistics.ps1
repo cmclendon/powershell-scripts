@@ -269,7 +269,6 @@ function Initialize-RecipientStatistics
     SCRIPT START
 #>
 
-Write-Host "You entered for -Hello " $startdate
 Connect-ExchangeOnline
 $messagelog = Get-SmtpLogFile -StartDate "05/07/2018 00:00:00 AM" -EndDate "05/07/2018 11:59:59 PM"
 Get-ExchangeRecipients | Initialize-RecipientStatistics -MessageTrace $messagelog
