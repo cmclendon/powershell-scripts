@@ -7,6 +7,7 @@
 # 
 # VERSION HISTORY
 # 1.0 2018.05.10 Initial Version
+# 1.0 2018.05.14 Added paging to Get-MessageTrace
 ##############################################################################>
 
 <#
@@ -133,14 +134,29 @@ function Get-SmtpLogFile([string] $startdate, [string] $enddate) {
         so we wil show a progress bar
     #>
     
-    Write-Host "Getting messages from Exchange Online between $($startdate) and $($enddate)..." -ForegroundColor Green -NoNewline
-    $messagetrace = Get-MessageTrace -StartDate $startdate -EndDate $enddate
-    Write-Host "...Done." -ForegroundColor White
-    
-    Write-Host "$($messagetrace.count) total messages loaded..." -ForegroundColor Gray -NoNewline
+    $pageSize = 1000
+    $currentPage = 1
+
+    <# 
+        $messageTrace will be the combined set of messages from each of the pages we load
+    #>
+    $messageTrace = $null;
+
+    Write-Host "Getting messages from Exchange Online between $($startdate) and $($enddate)..." -ForegroundColor Green
+    Write-Host "     loading $($pageSize) messages per page..." -NoNewline -ForegroundColor Yellow
+
+    do {
+        $pageSet = Get-MessageTrace -StartDate $startdate -EndDate $enddate -Page $currentPage -PageSize $pageSize
+        $messageTrace += $pageSet
+        Write-Host "$($currentPage)..." -NoNewline -ForegroundColor Yellow
+        $currentPage++
+    } while ($pageSet.count -eq $pageSize)
+
+    Write-Host "Done." -ForegroundColor Gray
+    Write-Host "Retrieved $($messageTrace.count) messages from $($currentPage) pages." -ForegroundColor Gray
 
     #Send messagetrace to standard output
-    Write-Output $messagetrace
+    Write-Output $messageTrace
 }
 
 <#
@@ -260,7 +276,7 @@ function Initialize-RecipientStatistics
             }
         }
 
-        Write-Host "...Done." -ForegroundColor White
+        Write-Host "Done." -ForegroundColor Gray
         Write-Output $recipients.Values
     }
 }
@@ -270,5 +286,5 @@ function Initialize-RecipientStatistics
 #>
 
 Connect-ExchangeOnline
-$messagelog = Get-SmtpLogFile -StartDate "05/07/2018 00:00:00 AM" -EndDate "05/07/2018 11:59:59 PM"
+$messagelog = Get-SmtpLogFile -StartDate "05/07/2018 00:00:00 AM" -EndDate "05/13/2018 11:59:59 PM"
 Get-ExchangeRecipients | Initialize-RecipientStatistics -MessageTrace $messagelog
