@@ -7,7 +7,8 @@
 # 
 # VERSION HISTORY
 # 1.0 2018.05.10 Initial Version
-# 1.0 2018.05.14 Added paging to Get-MessageTrace
+# 1.1 2018.05.14 Added paging to Get-MessageTrace
+# 1.2 2018.05.14 Add command line date options and -Default
 ##############################################################################>
 
 <#
