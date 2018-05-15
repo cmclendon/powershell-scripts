@@ -11,6 +11,11 @@
 ##############################################################################>
 
 <#
+Supported parameters
+#>
+param([string]$StartDate, [string] $EndDate, [string] $Default)
+
+<#
 .SYNOPSIS
 Create a remoting session for Office 365
 .DESCRIPTION
@@ -18,6 +23,7 @@ Checks for an existing remoting session to Office 365 and and Exchange Online.
 If it finds an open session it will recycle that session, otherwise it will call 
 Get-PSSession to establish a new session.
 #>
+
 function Connect-ExchangeOnline
 {
     $remoteSession = $null
@@ -285,6 +291,18 @@ function Initialize-RecipientStatistics
     SCRIPT START
 #>
 
+if ($Default.ToLower() -eq "true" ) {
+    $baseDate = (Get-Date).AddDays(-1)
+
+    $StartDate = $baseDate.ToString('MM/dd/yyyy 00:00:00')
+    $EndDate = $baseDate.ToString('MM/dd/yyyy 11:59:59')
+}
+elseif (!$StartDate.Length -or !$EndDate.Length) {
+        throw 'When not using -Default you must specify the -StartDate and -EndDate parameters'
+}
+
+Write-Host "Parsing messages from $($StartDate) to $($EndDate)" -ForegroundColor Red
+
 Connect-ExchangeOnline
-$messagelog = Get-SmtpLogFile -StartDate "05/07/2018 00:00:00 AM" -EndDate "05/13/2018 11:59:59 PM"
+$messagelog = Get-SmtpLogFile -StartDate $StartDate -EndDate $EndDate
 Get-ExchangeRecipients | Initialize-RecipientStatistics -MessageTrace $messagelog
